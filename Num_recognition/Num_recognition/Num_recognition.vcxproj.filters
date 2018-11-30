@@ -18,30 +18,25 @@
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Processing_function.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="knn.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Knn_Recognition.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Processing_function.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Processing_function.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="knn.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Knn_Recognition.h">
       <Filter>头文件</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\opencv\sources\samples\data\digits.png">
-      <Filter>资源文件</Filter>
-    </Image>
+    <ClInclude Include="Processing_function.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

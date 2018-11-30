@@ -24,7 +24,7 @@ public:
 	}
 	void Knn_Training();                   //训练得到Knn的指针
 	void detect(cv::Mat img, cv::Ptr<cv::ml::KNearest> model);
-	void Solve();                                                         
+	void Solve();
 
 
 private:

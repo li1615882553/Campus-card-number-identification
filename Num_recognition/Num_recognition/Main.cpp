@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#include "Processing_function.h"
+#include "Processing_function.h"	
 #include "knn.h"
 #include "Knn_Recognition.h"
 
@@ -17,16 +17,16 @@
 //滑动条程序
 void on_Trackbar(int ,void *)
 {
-	//cv::Mat res;
-	//Canny(img, res, min_threshold, max_threshold, 3);
-	//imshow("cont", res);
-	//cv::Mat thresh;
-	//threshold(gray, thresh, min_threshold, 255, cv::THRESH_BINARY_INV);
-	//imshow("thresh", thresh);
-	//findContours(thresh, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
-	//for (int i = 0; i < contours.size(); i++)
-	//	drawContours(cont, contours, i, Scalar(255, 255, 255));
-	//imshow("img", cont);
+//cv::Mat res;
+//Canny(img, res, min_threshold, max_threshold, 3);
+//imshow("cont", res);
+//cv::Mat thresh;
+//threshold(gray, thresh, min_threshold, 255, cv::THRESH_BINARY_INV);
+//imshow("thresh", thresh);
+//findContours(thresh, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+//for (int i = 0; i < contours.size(); i++)
+//	drawContours(cont, contours, i, Scalar(255, 255, 255));
+//imshow("img", cont);
 }
 */
 
@@ -78,7 +78,7 @@ int main()
 
 	cv::addWeighted(gray_x, 0.5, gray_y, 0.5, 0, gray);
 	imshow("cont", gray);
-	
+
 	/*
 	//霍夫变换检测直线
 	vector<cv::Vec4i> lines;
@@ -87,8 +87,8 @@ int main()
 
 	for (int i = 0; i < lines.size(); i++)
 	{
-		cv::Vec4i l = lines[i];
-		line(img, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
+	cv::Vec4i l = lines[i];
+	line(img, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
 	}
 	imshow("img", img);
 	*/
@@ -98,11 +98,11 @@ int main()
 	cv::HoughCircles(gray, circles, cv::HOUGH_GRADIENT, 1.5, 200);
 	for (int size_i = 0; size_i < circles.size(); size_i++)
 	{
-		cv::Point center(cvRound(circles[size_i][0]), cvRound(circles[size_i][1]));
-		int radius = cvRound(circles[size_i][2]);
+	cv::Point center(cvRound(circles[size_i][0]), cvRound(circles[size_i][1]));
+	int radius = cvRound(circles[size_i][2]);
 
-		cv::circle(gray, center, 3, cv::Scalar(0, 255, 0), -1, 8, 0);
-		cv::circle(gray, center, radius, cv::Scalar(0, 255, 0), 3, 8, 0);
+	cv::circle(gray, center, 3, cv::Scalar(0, 255, 0), -1, 8, 0);
+	cv::circle(gray, center, radius, cv::Scalar(0, 255, 0), 3, 8, 0);
 	}
 	imshow("gray", gray);
 	*/

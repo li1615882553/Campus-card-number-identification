@@ -36,19 +36,14 @@ void Knn_Recognition::detect(cv::Mat img, cv::Ptr<cv::ml::KNearest> model)
 {
 	/*****************                  在图片中获取校园卡区域                ********************/
 	cv::Mat Interest_Area = Get_Card_Area(img);
-	imwrite("Card_Area.jpg", Interest_Area);
+	//imwrite("Card_Area.jpg", Interest_Area);
 
 	/*****************                  现在提取校园卡卡号区域                ********************/
 	cv::Mat Num_Area = Get_Num_Area(Interest_Area);
-	cv::imwrite("Num_area.jpg", Num_Area);
+	//cv::imwrite("Num_area.jpg", Num_Area);
 
 	/*****************                  对卡号区域进行分割识别                ********************/
-	int *ans_array;
-	ans_array = (int *)malloc(sizeof(int) * 10);
-	ans_array = Identification_number(Num_Area, model);
-	for (int i = 0; i <= 9; i++)
-		std::cout << ans_array[i];
-	std::cout << std::endl;
+	Identification_number(Num_Area, model);
 }
 
 void Knn_Recognition::Solve()

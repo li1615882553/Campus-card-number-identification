@@ -65,7 +65,7 @@ cv::Mat  colorFilter(cv::Mat inputImage)
 				outputImage.at<cv::Vec3b>(cv::Point(j, i))[2] = 255;
 			}
 		}
-	imwrite("Binarization.jpg", outputImage);                      //二值化图片
+	//imwrite("Binarization.jpg", outputImage);                      //二值化图片
 	return outputImage;
 }
 /*
@@ -196,7 +196,7 @@ void SauvolaThresh(const cv::Mat src, cv::Mat& dst, const double k, int windowSi
 {
 	int whalf = windowSize >> 1;
 
-	if (src.channels() == 3) 
+	if (src.channels() == 3)
 		cv::cvtColor(src, src, cv::COLOR_BGR2GRAY);
 	dst = cv::Mat::zeros(src.rows, src.cols, CV_8UC1);
 
@@ -331,7 +331,7 @@ cv::Mat Get_Card_Area(cv::Mat img)
 	cv::Point2f vertex[4];
 	rect.points(vertex);
 
-	imwrite("binaryImage.jpg", binaryImage);
+	//imwrite("binaryImage.jpg", binaryImage);
 	/*
 	for (int size_i = 0; size_i < 4; size_i++)
 	line(img, vertex[size_i], vertex[(size_i + 1) % 4], cv::Scalar(0, 255, 0), 2, cv::LINE_AA);
@@ -395,9 +395,9 @@ cv::Mat Get_Num_Area(cv::Mat Interest_Area)
 	cv::Mat elemect_erode = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 2));
 
 	cv::erode(Interest_Area_bin, Interest_Area_erode, elemect_erode, cv::Point(-1, -1));                      //腐蚀
-	imwrite("Interest_Area_erode.jpg", Interest_Area_erode);
+	//imwrite("Interest_Area_erode.jpg", Interest_Area_erode);
 	cv::dilate(Interest_Area_erode, Interest_Area_dilate, elemect_dilate, cv::Point(-1, -1));                   //膨胀
-	imwrite("Interest_Area_dilate.jpg", Interest_Area_dilate);
+	//imwrite("Interest_Area_dilate.jpg", Interest_Area_dilate);
 
 	//划取轮廓判断卡号区域
 	double max_y = 0;
@@ -438,8 +438,8 @@ cv::Mat Get_Num_Area(cv::Mat Interest_Area)
 	cv::Mat Num_Area = Interest_Area(cv::Rect(s.tl().x, s.tl().y, s.width, s.height));
 	cv::Mat Num_Area_bin = Interest_Area_bin(cv::Rect(s.tl().x, s.tl().y, s.width, s.height));          //色调H对图片进行的二值化操作
 
-	//imshow("Num_Area.jpg", Num_Area);
-	//imshow("Num_Area_bin.jpg", Num_Area_bin);
+																										//imshow("Num_Area.jpg", Num_Area);
+																										//imshow("Num_Area_bin.jpg", Num_Area_bin);
 	return Num_Area;
 }
 
@@ -458,17 +458,17 @@ typedef struct Num_Rect_
 		return false;
 	}
 }Num_Rect;
-int* Identification_number(cv::Mat Num_Area, cv::Ptr<cv::ml::KNearest> model)
+void Identification_number(cv::Mat Num_Area, cv::Ptr<cv::ml::KNearest> model)
 {
 	std::vector<std::vector<cv::Point> > contours;
-	cv::Mat binary,Num_Area_gray;
+	cv::Mat binary, Num_Area_gray;
 	cv::cvtColor(Num_Area, Num_Area_gray, cv::COLOR_BGR2GRAY);
 	SauvolaThresh(Num_Area_gray, binary, 0.3, 20);
 	binary = 255 - binary;
-	cv::imwrite("Num_area_bin.jpg", binary);
+	//cv::imwrite("Num_area_bin.jpg", binary);
 
 	cv::copyMakeBorder(binary, binary, 5, 5, 5, 5, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));    //扩充图像边缘
-	//imshow("binary", binary);
+																								 //imshow("binary", binary);
 
 	findContours(binary, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
 	cv::Mat res = binary.clone();
@@ -482,7 +482,7 @@ int* Identification_number(cv::Mat Num_Area, cv::Ptr<cv::ml::KNearest> model)
 			continue;
 		cv::Rect rect = cv::boundingRect(contours[i]);
 
-		if (rect.height < binary.rows/2)
+		if (rect.height < binary.rows / 2)
 			continue;
 
 		//更新Num_Rect结构体
@@ -498,7 +498,7 @@ int* Identification_number(cv::Mat Num_Area, cv::Ptr<cv::ml::KNearest> model)
 		vertex[3].x = (float)rect.br().x, vertex[3].y = (float)rect.tl().y;                 //矩阵右上方的点
 
 		for (int j = 0; j < 4; j++)
-			line(res, vertex[j], vertex[(j + 1) % 4], cv::Scalar(255, 255, 255), 1);
+		line(res, vertex[j], vertex[(j + 1) % 4], cv::Scalar(255, 255, 255), 1);
 		*/
 	}
 	std::sort(num_rect, num_rect + pos);
@@ -538,6 +538,5 @@ int* Identification_number(cv::Mat Num_Area, cv::Ptr<cv::ml::KNearest> model)
 	for (int i = 0; i <= 9; i++)
 		std::cout << ans_array[i];
 	std::cout << std::endl;
-	return ans_array;
 }
 

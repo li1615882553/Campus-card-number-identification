@@ -41,7 +41,7 @@ cv::Mat Binarization(cv::Mat srcImage);
 void SauvolaThresh(const cv::Mat src, cv::Mat& dst, const double k, int windowSize);
 
 /**
-@brief 在图片中得到校园卡区域   
+@brief 在图片中得到校园卡区域
 函数并没有完善好，因为旋转的情况还没有考虑
 
 @param 整张图片
@@ -61,7 +61,7 @@ cv::Mat Get_Num_Area(cv::Mat Interest_Area);
 数字识别
 @param 校园卡卡号区域
 */
-int* Identification_number(cv::Mat Num_Area, cv::Ptr<cv::ml::KNearest> model);
+void Identification_number(cv::Mat Num_Area, cv::Ptr<cv::ml::KNearest> model);
 
 
 #endif
